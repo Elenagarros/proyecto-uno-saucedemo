@@ -29,7 +29,7 @@ reporter: [
 // Configuración global para todos los proyectos (navegadores)
 use: {
 // URL base para no escribirla completa en cada test (ej: await page.goto('/login'))
-baseURL: 'https://example.com',
+baseURL: 'https://saudedemo.com',
 
 // Capturar trazas para debuguear sólo cuando un test falla
 trace: 'retain-on-failure',
@@ -50,14 +50,14 @@ projects: [
 name: 'chromium',
 use: { ...devices['Desktop Chrome'] },
 },
-{
+/*{
 name: 'firefox',
 use: { ...devices['Desktop Firefox'] },
 },
 {
 name: 'webkit',
 use: { ...devices['Desktop Safari'] },
-},
+},*/
 
 /* Configuración para móviles (descomenta si lo necesitas) */
 // {
