@@ -29,7 +29,7 @@ reporter: [
 // Configuración global para todos los proyectos (navegadores)
 use: {
 // URL base para no escribirla completa en cada test (ej: await page.goto('/login'))
-baseURL: 'https://saudedemo.com',
+baseURL: 'https://saucedemo.com',
 
 // Capturar trazas para debuguear sólo cuando un test falla
 trace: 'retain-on-failure',
