@@ -2,7 +2,7 @@
 
 import { test, expect } from '@playwright/test';
 
-// Esto se ejecuta antes de cada prueba para NO REPETIR el login }
+// Esto se ejecuta antes de cada prueba para NO REPETIR el login 
 
 test.beforeEach(async ({ page }) => {
   // 1. Entrar a la web de Swag Labs
@@ -32,7 +32,6 @@ test('Prueba 1: Verificar que el catálogo de productos carga con el título cor
   const cartIcon = page.locator('.shopping_cart_link');
 
   await expect(cartIcon).toBeVisible();
-
 });
 
 test('Prueba 2: Verificar que haya 6 productos en el catálogo', async ({ page }) => {
