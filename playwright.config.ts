@@ -31,6 +31,9 @@ use: {
 // URL base para no escribirla completa en cada test (ej: await page.goto('/login'))
 baseURL: 'https://saucedemo.com',
 
+// Atributo que usa getByTestId para buscar elementos (saucedemo usa data-test)
+testIdAttribute: 'data-test',
+
 // Capturar trazas para debuguear sólo cuando un test falla
 trace: 'retain-on-failure',
 
