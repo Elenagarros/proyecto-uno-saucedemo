@@ -1,28 +1,19 @@
-// pages/LoginPage.ts
+import { Page, Locator } from '@playwright/test';   // tipos de Playwright que necesita la ficha
 
-import { Page, Locator } from '@playwright/test';
+export class LoginPage {                            // la ficha de la página de login
+  username: Locator;                                // datos que tiene la ficha
+  password: Locator;
+  loginButton: Locator;
 
-export class LoginPage {
-    readonly page: Page;
-    readonly usernameInput: Locator;
-    readonly passwordInput: Locator
-    readonly loginButton: Locator;
+  constructor(page: Page) {                         // se ejecuta al crear la ficha (new LoginPage(page))
+    this.username = page.locator('[data-test="username"]');         // tu locator, igual
+    this.password = page.locator('[data-test="password"]');         // tu locator, igual
+    this.loginButton = page.locator('[data-test="login-button"]');  // tu locator, igual
+  }
 
-// Pages/LoginPage.ts
-async goto() {
-  await this.page.goto('/');
-}
-
-    constructor(page: Page) {
-        this.page = page;
-        this.usernameInput = page.getByPlaceholder('Username');
-        this.passwordInput = page.getByPlaceholder('Password');
-        this.loginButton = page.getByRole('button', { name: 'Login' });
-    }  
-
-    async login(username: string, password: string) {
-        await this.usernameInput.fill(username); 
-        await this.passwordInput.fill(password);
-        await this.loginButton.click();
-    }  
+  async login(user: string, pass: string) {         // la "receta": iniciar sesión
+    await this.username.fill(user);                 // tu línea 1
+    await this.password.fill(pass);                 // tu línea 2
+    await this.loginButton.click();                 // tu línea 3
+  }
 }

@@ -3,29 +3,39 @@
 import { Page, Locator } from '@playwright/test';
 
 export class InventoryPage {
-    readonly page: Page
-    readonly inventoryItems: Locator;
-    readonly inventoryTitle: Locator;
-    readonly shoppingCart: Locator;
-    
-
-
-
+    title: Locator;
+    burgerButton: Locator;
+    openMenuButton: Locator;
+    sidebarPanel: Locator;
+    cartLink: Locator;
+    cartBadge: Locator;
+    sortContainer: Locator;
+    itemNames: Locator;
+    itemDescriptions: Locator;
+    addBackpackButton: Locator;
+    removeBackpackButton: Locator;
+    inventorySidebarLink: Locator;
+    dynamicCatalogSidebarLink: Locator;
+    aboutSidebarLink: Locator;
+    logoutSidebarLink: Locator;
+    resetSidebarLink: Locator;
 
     constructor(page: Page) {
-        this.page = page;
-        this.inventoryItems = page.locator('.inventory_item');
-        this.inventoryTitle = page.locator('.title');
-        this.shoppingCart = page.locator('.shopping_cart_link');
+        this.title = page.getByTestId('title');
+        this.burgerButton = page.locator('#react-burger-menu-btn');
+        this.openMenuButton = page.getByRole('button', { name: 'Open Menu' });
+        this.sidebarPanel = page.locator('div').filter({ hasText: /^All ItemsDynamic CatalogAboutLogoutReset App State$/ });
+        this.cartLink = page.getByTestId('shopping-cart-link');
+        this.cartBadge = page.getByTestId('shopping-cart-badge');
+        this.sortContainer = page.getByTestId('product-sort-container');
+        this.itemNames = page.getByTestId('inventory-item-name');
+        this.itemDescriptions = page.getByTestId('inventory-item-description');
+        this.addBackpackButton = page.getByTestId('add-to-cart-sauce-labs-backpack');
+        this.removeBackpackButton = page.getByTestId('remove-sauce-labs-backpack');
+        this.inventorySidebarLink = page.getByTestId('inventory-sidebar-link');
+        this.dynamicCatalogSidebarLink = page.getByTestId('dynamic-catalog-sidebar-link');
+        this.aboutSidebarLink = page.getByTestId('about-sidebar-link');
+        this.logoutSidebarLink = page.getByTestId('logout-sidebar-link');
+        this.resetSidebarLink = page.getByTestId('reset-sidebar-link');
     }
-
-    async getInventoryItemsCount(): Promise<number> {
-        return await this.inventoryItems.count();
-    }
-
-    // Pages/InventoryPage.ts
-    async goto() {
-        await this.page.goto('/');
-    }
-
-} 
+}

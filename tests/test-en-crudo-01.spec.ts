@@ -9,6 +9,7 @@ test('Inventory 01 - El titulo de la pagina es el correcto', async ({ page }) =>
     await page.locator('[data-test="password"]').fill('secret_sauce');
     await page.locator('[data-test="login-button"]').click();
     // Verificar que el titulo sea Swag Labs
+    await expect(page).toHaveURL(/inventory\.html/);   // solo es cierta si entró a productos
     await expect(page).toHaveTitle('Swag Labs'); // pestaña
 });
 
