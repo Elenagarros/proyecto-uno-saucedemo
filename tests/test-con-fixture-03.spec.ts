@@ -1,3 +1,6 @@
+// tests/inventory.spec.ts
+
+// Este test ya no necesita el beforeEach porque el fixture inventoryPage ya hace el login antes de cada test.
 import { test, expect } from './fixtures/inventory.fixture';
 
 test.describe('Inventory', () => {

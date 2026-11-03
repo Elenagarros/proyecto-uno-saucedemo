@@ -1,5 +1,4 @@
-// This file is a fixture for the InventoryPage in Playwright tests. It sets up the necessary context for tests that require the InventoryPage, including logging in as a standard user before each test. The fixture is defined using Playwright's test.extend method, 
-// allowing tests to access the InventoryPage instance easily.
+// fixtures/inventory.fixture.ts
 
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
