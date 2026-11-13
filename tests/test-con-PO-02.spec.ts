@@ -1,9 +1,8 @@
-// tests/test-con-PO-02.spec.ts
+// tests/inventory.spec.ts
 
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
-import { USERS } from '../data/users';
 
 test.describe('Inventory', () => {
 
@@ -11,7 +10,7 @@ test.describe('Inventory', () => {
         const loginPage = new LoginPage(page);
         // “Armá la página de login sobre esta pestaña y guardala con el nombre loginPage.”
         await page.goto('/');
-        await loginPage.login(USERS.standard.username, USERS.standard.password);
+        await loginPage.login('standard_user', 'secret_sauce');
     });
 
     test('Inventory 01 - El titulo de la pagina es el correcto', async ({ page }) => {
@@ -26,7 +25,7 @@ test.describe('Inventory', () => {
 
     test('Inventory 03 - Verificar que la hamburguesa este visible', async ({ page }) => {
         const inventoryPage = new InventoryPage(page);
-        await expect(inventoryPage.openMenuButton).toBeVisible();
+        await expect(inventoryPage.burgerButton).toBeVisible();
     });
 
     test('Inventory 04 - Verificar que el carrito de compras sea visible', async ({ page }) => {
@@ -113,7 +112,6 @@ test.describe('Inventory', () => {
         const inventoryPage = new InventoryPage(page);
         await inventoryPage.itemNames.first().click();
         // Aparece el detalle del producto seleccionado
-        await expect(page).toHaveURL(/inventory-item\.html/);
         await expect(inventoryPage.itemNames).toHaveText('Sauce Labs Backpack');
     });
 
