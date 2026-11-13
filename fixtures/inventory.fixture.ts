@@ -1,18 +1,18 @@
 // fixtures/inventory.fixture.ts
 
 import { test as base, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { InventoryPage } from '../../pages/InventoryPage';
+import { InventoryPage } from '../pages/InventoryPage';
+import { AUTH_FILE } from '../data/users';
 
 type InventoryFixtures = {
     inventoryPage: InventoryPage;
 };
 
 export const test = base.extend<InventoryFixtures>({
+    // Arranca cada test con la sesión que guardó auth.setup.ts, sin escribir usuario y contraseña
+    storageState: AUTH_FILE,
     inventoryPage: [async ({ page }, use) => {
-        const loginPage = new LoginPage(page);
-        await page.goto('/');
-        await loginPage.login('standard_user', 'secret_sauce');
+        await page.goto('/inventory.html');
         await use(new InventoryPage(page));
     }, { auto: true }],
 });

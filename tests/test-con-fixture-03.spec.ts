@@ -1,7 +1,8 @@
-// tests/inventory.spec.ts
+// tests/test-con-fixture-03.spec.ts
 
-// Este test ya no necesita el beforeEach porque el fixture inventoryPage ya hace el login antes de cada test.
-import { test, expect } from './fixtures/inventory.fixture';
+// Este test ya no necesita el beforeEach: el fixture inventoryPage usa la sesión guardada por auth.setup.ts y abre el inventario.
+import { test, expect } from '../fixtures/inventory.fixture';
+import { LoginPage } from '../pages/LoginPage';
 
 test.describe('Inventory', () => {
 
@@ -15,7 +16,7 @@ test.describe('Inventory', () => {
     });
 
     test('Inventory 03 - Verificar que la hamburguesa este visible', async ({ inventoryPage }) => {
-        await expect(inventoryPage.burgerButton).toBeVisible();
+        await expect(inventoryPage.openMenuButton).toBeVisible();
     });
 
     test('Inventory 04 - Verificar que el carrito de compras sea visible', async ({ inventoryPage }) => {
@@ -78,8 +79,9 @@ test.describe('Inventory', () => {
         await expect(inventoryPage.resetSidebarLink).toBeVisible();
     });
 
-    test('Inventory 14 - Verificar que al hacer click en un producto se abre su detalle', async ({ inventoryPage }) => {
+    test('Inventory 14 - Verificar que al hacer click en un producto se abre su detalle', async ({ page, inventoryPage }) => {
         await inventoryPage.itemNames.first().click();
+        await expect(page).toHaveURL(/inventory-item\.html/);
         await expect(inventoryPage.itemNames).toHaveText('Sauce Labs Backpack');
     });
 
@@ -87,6 +89,14 @@ test.describe('Inventory', () => {
         await expect(inventoryPage.cartLink).toBeVisible();
         await inventoryPage.cartLink.click();
         await expect(page).toHaveURL(/cart\.html/);
+    });
+
+    test('Inventory 16 - Verificar que el logout vuelve a la pagina de login', async ({ page, inventoryPage }) => {
+        const loginPage = new LoginPage(page);
+        await inventoryPage.openMenuButton.click();
+        await inventoryPage.logoutSidebarLink.click();
+        await expect(page).toHaveURL(/saucedemo\.com\/$/);
+        await expect(loginPage.loginButton).toBeVisible();
     });
 
 });

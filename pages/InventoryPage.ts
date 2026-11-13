@@ -4,7 +4,6 @@ import { Page, Locator } from '@playwright/test';
 
 export class InventoryPage {
     title: Locator;
-    burgerButton: Locator;
     openMenuButton: Locator;
     sidebarPanel: Locator;
     cartLink: Locator;
@@ -22,9 +21,8 @@ export class InventoryPage {
 
     constructor(page: Page) {
         this.title = page.getByTestId('title');
-        this.burgerButton = page.locator('#react-burger-menu-btn');
         this.openMenuButton = page.getByRole('button', { name: 'Open Menu' });
-        this.sidebarPanel = page.locator('div').filter({ hasText: /^All ItemsDynamic CatalogAboutLogoutReset App State$/ });
+        this.sidebarPanel = page.locator('.bm-menu-wrap');
         this.cartLink = page.getByTestId('shopping-cart-link');
         this.cartBadge = page.getByTestId('shopping-cart-badge');
         this.sortContainer = page.getByTestId('product-sort-container');
