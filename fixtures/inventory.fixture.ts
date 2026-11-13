@@ -1,8 +1,8 @@
 // fixtures/inventory.fixture.ts
 
 import { test as base, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { InventoryPage } from '../../pages/InventoryPage';
+import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
 
 type InventoryFixtures = {
     inventoryPage: InventoryPage;
